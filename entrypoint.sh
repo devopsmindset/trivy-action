@@ -192,6 +192,10 @@ if [ "${format}" == "sarif" ] && [ "${limitSeveritiesForSARIF}" != "true" ]; the
   # regardless of severity level specified in this report.
   # This is a feature, not a bug :)
   echo "Building SARIF report with options: ${SARIF_ARGS}" "${artifactRef}"
+  trivy ${scanType} --trace --debug
+  echo "Building"
+  trivy ${scanType} --format sarif --trace --debug
+  echo "Building"
   trivy ${scanType} --format sarif --output ${output} $SARIF_ARGS ${artifactRef} --trace --debug
 elif [ $trivyConfig ]; then
    echo "Running Trivy with trivy.yaml config from: " $trivyConfig
