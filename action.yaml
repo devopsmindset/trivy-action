@@ -102,6 +102,7 @@ runs:
   using: 'docker'
   image: "Dockerfile"
   args:
+    - '--debug'
     - '-a ${{ inputs.scan-type }}'
     - '-b ${{ inputs.format }}'
     - '-c ${{ inputs.template }}'
