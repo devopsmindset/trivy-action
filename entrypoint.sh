@@ -165,8 +165,8 @@ if [ $ignorePolicy ];then
   SARIF_ARGS="$SARIF_ARGS --ignore-policy $ignorePolicy"
 fi
 if [ "$hideProgress" == "true" ];then
-  ARGS="$ARGS --quiet"
-  SARIF_ARGS="$SARIF_ARGS --quiet"
+  ARGS="$ARGS"
+  SARIF_ARGS="$SARIF_ARGS"
 fi
 if [ $dockerHost ];then
   ARGS="$ARGS --docker-host $dockerHost"
@@ -192,7 +192,7 @@ if [ "${format}" == "sarif" ] && [ "${limitSeveritiesForSARIF}" != "true" ]; the
   # regardless of severity level specified in this report.
   # This is a feature, not a bug :)
   echo "Building SARIF report with options: ${SARIF_ARGS}" "${artifactRef}"
-  trivy --quiet ${scanType} --format sarif --output ${output} $SARIF_ARGS ${artifactRef}
+  trivy ${scanType} --format sarif --output ${output} $SARIF_ARGS ${artifactRef}
 elif [ $trivyConfig ]; then
    echo "Running Trivy with trivy.yaml config from: " $trivyConfig
    trivy --config $trivyConfig ${scanType} ${artifactRef}
